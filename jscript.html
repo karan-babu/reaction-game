@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>reaction game</title>
+        <style>
+            #shapes{
+                height:200px;
+                width:200px;
+                background-color:red;
+                position: relative;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <h1>test your reaction timing</h1>
+        <p>click the boxes and circles as well as you can</p>
+        <p>your time : <span id='gettime'></span></p>
+        <div id='shapes'></div>
+        
+
+      <script>
+             var start=new Date().getTime();
+ 
+             function getRandomColor() {
+              var letters = '0123456789ABCDEF';
+               var color = '#';
+              for (var i = 0; i < 6; i++) {
+               color += letters[Math.floor(Math.random() * 16)];
+               }
+           return color;
+              }
+
+
+             function shapeTimer(){
+                 var top=(Math.random() * 400);
+                 var left=(Math.random() * 400);
+                 var width=(Math.random()*300)+50;
+                  if(Math.random()>0.5){
+                     document.getElementById('shapes').style.borderRadius='50%';
+                 }else{
+                     document.getElementById('shapes').style.borderRadius='0';
+                 }
+                 document.getElementById('shapes').style.backgroundColor=getRandomColor();
+                 document.getElementById('shapes').style.width=width+'px';
+                 document.getElementById('shapes').style.height=width+'px';
+                 document.getElementById('shapes').style.top=top+'px';
+                 document.getElementById('shapes').style.left=left+'px';
+                 document.getElementById('shapes').style.display='block';
+                var start=new Date().getTime();
+               }
+             function delayTime(){
+                  setTimeout( shapeTimer , Math.random()*1000);
+             } 
+              
+             document.getElementById('shapes').onclick=function() 
+             {
+              document.getElementById('shapes').style.display='none';
+              var end=new Date().getTime();
+              time=(end-start)/1000;
+            
+              delayTime();
+              document.getElementById('gettime').innerHTML=time+'s';
+             } 
+              
+     </script>
+
+
+    </body>
+</html>
